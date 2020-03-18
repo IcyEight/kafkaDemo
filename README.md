@@ -4,31 +4,32 @@ To run the application, please install Apache Kafka instance from this [link](ht
 
 `cd kafka_2.11-2.4.0`
 
-Start zookeeper:
+Start zookeeper: <br/>
 `./bin/zookeeper-server-start.sh config/zookeeper.properties`
 
-Keep zookeeper running and start Kafka broker:
+Keep zookeeper running and start Kafka broker: <br/>
 `./bin/kafka-server-start.sh config/server.properties`
 
-Create a topic called MyTopic1:
+Create a topic called `MyTopic1`: <br/>
 `./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic MyTopic1`
 
-Create another topic called MyTopic2
+Create another topic called `MyTopic2`: <br/>
 `./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic MyTopic2`
 
-Create console producer that sends message to MyTopic1:
+Create console producer that sends message to `MyTopic1`: <br/>
 `./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic MyTopic1`
 
-Create another console producer that sends message to MyTopic2:
+Create another console producer that sends message to `MyTopic2`: <br/>
 `./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic MyTopic2`
+
 
 Now start the application. Send any string to MyTopic1 and any json formatted string to MyTopic2, you will receive the corresponsing messages on the application side as consumers for the topics.
 
-Helpful commands:
-To list topics:
+Helpful commands:  <br/>
+To list topics: <br/>
 `./bin/kafka-topics.sh --list --bootstrap-server localhost:9092`
 
-To create a console consumer (we don't need this one to run our application though):
+To create a console consumer: <br/>
 `./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic MyTopic --from-beginning`
 
 
