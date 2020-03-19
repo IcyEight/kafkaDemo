@@ -15,7 +15,6 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.example.kafkaDemo.model.Order;
-import com.techprimers.kafka.springbootkafkaconsumerexample.model.User;
 
 @EnableKafka
 @Configuration
@@ -59,6 +58,27 @@ public class KafkaConfiguration {
     public ConcurrentKafkaListenerContainerFactory<String, Order> jsonKafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Order> factory = new ConcurrentKafkaListenerContainerFactory();
         factory.setConsumerFactory(jsonConsumerFactory());
+        return factory;
+    }
+    
+    
+    @Bean
+    public ConsumerFactory<String, String> xmlConsumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+
+        return new DefaultKafkaConsumerFactory<>(config);
+    }
+
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> xmlKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory();
+        factory.setConsumerFactory(xmlConsumerFactory());
         return factory;
     }
 }

@@ -3,16 +3,16 @@ package com.example.kafkaDemo.model;
 public class Order {
 	private String id;
 	private double amount;
-	protected String getId() {
+	public String getId() {
 		return id;
 	}
-	protected double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	protected void setId(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	protected void setAmount(double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public Order(String id, double amount) {
